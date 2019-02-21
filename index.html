@@ -1,3 +1,4 @@
+
 <html ng-app="todoApp">
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.js"></script>
@@ -5,15 +6,8 @@
         <script src="app/controller/todo-controller.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-        *{
-            font-family: 'Roboto';
-            font-size: 20px;
-        }
-        .text-strike {
-            text-decoration: line-through;
-        }
-        </style>
+        
+        <link rel="stylesheet" href="app.css">
     </head>
     <body ng-controller="TasksController">
         <div class="container-fluid">
@@ -31,28 +25,18 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-sm-4">
-                    <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="task in vm.tasks">
+                  <div class="col-sm-4">
+                      <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="task in vm.tasks track by $index">
                                 <div>
-                                    <input type="checkbox">
-                                    <label class="mb-0">{{task}}</label>
+                                    <input type="checkbox" ng-model="task.cheched" >
+                                    <label class="mb-0" ng-class="{'text-strike text-muted': task.cheched}" >{{task.name}}</label>
+                                   
+                                    <button type="button" class="btn btn-lr float-right" ng-click="vm.removeTask(task)">X</button>
                                 </div>
                             </li>
-                            <!-- <li class="list-group-item">
-                                <div>
-                                    <input type="checkbox">
-                                    <label class="mb-0">Task 1 my new task.</label>
-                                </div>
-                            </li>
-                            <li class="list-group-item text-muted">
-                                    <div>
-                                        <input type="checkbox">
-                                        <label class="mb-0 text-strike">Task 2 complete.</label>
-                                    </div>
-                                </li> -->
-                    </ul>
-                </div>
+                      </ul>
+                 </div>
             </div>
         </div>
     </body>
